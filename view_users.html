@@ -8,21 +8,21 @@
 <body>
     <h1>View Users</h1>
     <ul id="userList"></ul>
-  
+
     <script>
-      async function fetchUsers() {
-        const res = await fetch('/api/users');
-        const users = await res.json();
-  
+    async function loadUsers() {
+        const response = await fetch('/api/users');
+        const users = await response.json();
+
         const list = document.getElementById('userList');
         users.forEach(user => {
-          const li = document.createElement('li');
-          li.textContent = `${user.name} (Age: ${user.age})`;
-          list.appendChild(li);
+        const li = document.createElement('li');
+        li.textContent = `${user.name} (Age: ${user.age})`;
+        list.appendChild(li);
         });
-      }
-  
-      fetchUsers();
+    }
+
+    loadUsers();
     </script>
   </body>
   
