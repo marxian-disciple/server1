@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Create User</h1>
+    <form id="createUserForm">
+      <input type="text" id="name" placeholder="Name" required>
+      <input type="number" id="age" placeholder="Age" required>
+      <button type="submit">Create</button>
+    </form>
+  
+    <script>
+      document.getElementById('createUserForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        const age = parseInt(document.getElementById('age').value);
+  
+        const response = await fetch('/api/users', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, age })
+        });
+  
+        const result = await response.json();
+        alert(`User created with ID: ${result.id}`);
+      });
+    </script>
+  </body>
+  
+</html>

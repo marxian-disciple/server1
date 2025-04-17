@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>View Users</h1>
+    <ul id="userList"></ul>
+  
+    <script>
+      async function fetchUsers() {
+        const res = await fetch('/api/users');
+        const users = await res.json();
+  
+        const list = document.getElementById('userList');
+        users.forEach(user => {
+          const li = document.createElement('li');
+          li.textContent = `${user.name} (Age: ${user.age})`;
+          list.appendChild(li);
+        });
+      }
+  
+      fetchUsers();
+    </script>
+  </body>
+  
+</html>
